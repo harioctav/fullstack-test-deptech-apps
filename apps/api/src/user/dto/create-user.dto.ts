@@ -6,6 +6,7 @@ import {
   IsPhoneNumber,
   IsEnum,
 } from 'class-validator';
+import { Transform } from 'class-transformer';
 
 export class CreateUserDto {
   @IsNotEmpty()
@@ -31,6 +32,6 @@ export class CreateUserDto {
   @IsEnum(Gender)
   gender?: Gender;
 
-  @IsString()
+  @Transform(({ value }) => new Date(value))
   date_of_birth?: string;
 }

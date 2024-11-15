@@ -8,12 +8,14 @@ export async function register(
 	state: FormState,
 	formData: FormData
 ): Promise<FormState> {
+	const dateStr = formData.get("date_of_birth") as string;
+
 	const validationFields = SignUpFormSchema.safeParse({
 		first_name: formData.get("first_name"),
 		last_name: formData.get("last_name"),
 		email: formData.get("email"),
 		password: formData.get("password"),
-		date_of_birth: formData.get("date_of_birth"),
+		date_of_birth: dateStr,
 		gender: formData.get("gender"),
 	});
 

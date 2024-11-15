@@ -82,12 +82,10 @@ const SignUpForm = () => {
 
 	const handleSubmit = async (formData: FormData) => {
 		// Convert the date string to ISO format
-		const birthDate = formData.get("date_of_birth");
-		if (birthDate) {
-			formData.set("date_of_birth", `${birthDate}T00:00:00.000Z`);
+		if (date) {
+			formData.set("date_of_birth", format(date, "yyyy-MM-dd"));
 		}
 
-		console.log("Submitted data:", Object.fromEntries(formData));
 		return action(formData);
 	};
 

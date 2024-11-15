@@ -14,9 +14,7 @@ export class UserService {
       data: {
         ...user,
         password: hashedPassword,
-        date_of_birth: date_of_birth
-          ? new Date(`${date_of_birth}T00:00:00.000Z`)
-          : null,
+        date_of_birth: new Date(date_of_birth),
       },
     });
   }

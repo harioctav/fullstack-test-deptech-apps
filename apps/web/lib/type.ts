@@ -45,14 +45,19 @@ export const SignUpFormSchema = z.object({
 		required_error: "Please select a gender.",
 	}),
 	date_of_birth: z
-		.date({
-			required_error: "Please select a date of birth.",
-		})
-		.refine(
-			(date) => {
-				const age = new Date().getFullYear() - date.getFullYear();
-				return age >= 13;
-			},
-			{ message: "You must be at least 13 years old." }
+		.string()
+		.transform((str) => new Date(str))
+		.pipe(
+			z
+				.date({
+					required_error: "Please select a date of birth.",
+				})
+				.refine(
+					(date) => {
+						const age = new Date().getFullYear() - date.getFullYear();
+						return age >= 13;
+					},
+					{ message: "You must be at least 13 years old." }
+				)
 		),
 });
