@@ -4,7 +4,6 @@ import {
   IsEmail,
   IsNotEmpty,
   IsPhoneNumber,
-  IsDate,
   IsEnum,
 } from 'class-validator';
 
@@ -32,6 +31,6 @@ export class CreateUserDto {
   @IsEnum(Gender)
   gender?: Gender;
 
-  @IsDate()
-  date_of_birth?: Date;
+  @IsString()
+  date_of_birth?: string;
 }

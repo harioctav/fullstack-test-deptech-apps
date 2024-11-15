@@ -22,8 +22,8 @@ model User {
   password String @db.VarChar(255)
   gender Gender?
   date_of_birth DateTime? @db.Date
-  created_at DateTime? @db.DateTime(0)
-  updated_at DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now())
+  updated_at DateTime? @updatedAt
 
   @@map("users")
 }
@@ -35,13 +35,13 @@ model Employee {
   email String @unique(map: "email_UNIQUE") @db.VarChar(45)
   phone String? @unique(map: "phone_UNIQUE") @db.VarChar(20)
   address String? @db.Text
-  created_at DateTime? @db.DateTime(0)
-  updated_at DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now())
+  updated_at DateTime? @updatedAt
 
   @@map("employees")
 }
 
 enum Gender {
-  MALE
-  FEMALE
+  Male
+  Female
 }

@@ -8,18 +8,21 @@ export class UserService {
   constructor(private readonly prisma: PrismaService) {}
 
   async create(createUserDto: CreateUserDto) {
-    const { password, ...user } = createUserDto;
+    const { password, date_of_birth, ...user } = createUserDto;
     const hashedPassword = await hash(password);
     return await this.prisma.user.create({
       data: {
-        password: hashedPassword,
         ...user,
+        password: hashedPassword,
+        date_of_birth: date_of_birth
+          ? new Date(`${date_of_birth}T00:00:00.000Z`)
+          : null,
       },
     });
   }
 
   async findByEmail(email: string) {
-    this.prisma.user.findUnique({
+    return await this.prisma.user.findUnique({
       where: {
         email,
       },
