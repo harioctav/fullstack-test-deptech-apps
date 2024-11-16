@@ -75,6 +75,7 @@ export async function login(
 				id: result.id,
 				name: result.first_name,
 			},
+			accessToken: result.accessToken,
 		});
 
 		redirect("/");
